@@ -107,6 +107,18 @@ public class RegraNegocioUsuarios implements InterfaceRegraNegocioUsuarios {
          }
     }
 
+    @Override
+    public boolean checarLoginUsuario(String cpfUsuario) throws ExceptionRegraNegociofiltrarUsuarios {
+      boolean loginUsuario = false; 
+        if(cpfUsuario == null) {
+            throw new ExceptionRegraNegociofiltrarUsuarios();
+        }
+        else {
+            loginUsuario = this.ru.checarLoginUsuario(cpfUsuario);
+        }
+        return loginUsuario;
+    }
+
 
     
 }

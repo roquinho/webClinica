@@ -51,7 +51,7 @@ public class RepositorioUsuarios implements InterfaceRepositorioUsuarios{
 
     @Override
     public Usuarios buscarUsuarioSenhaNome(String senha,String nome) {
-        this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
+      this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
        Usuarios usuario = null;
         try{	    	 
 	  String sql = "select * from usuarios";	    	
@@ -174,5 +174,33 @@ public class RepositorioUsuarios implements InterfaceRepositorioUsuarios{
          }
 	
     }
+    @Override
+    public boolean checarLoginUsuario(String cpfUsuario) {
+       this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
+        boolean loginUsuario = false;
+         try{	    	 
+	  String sql = "select * from usuarios";	    	
+	    this.stm = conexao.prepareStatement(sql);
+	        this.rs = stm.executeQuery();
+       		    while(this.rs.next()){	 				
+	 		if(cpfUsuario.equals(this.rs.getString("cpf"))){
+                            loginUsuario = true;
+                                   }
+                    }
+                                this.stm.close();
+	 			this.rs.close();
+                                this.conexao.close();
+        }catch(SQLException e) {
+          try {
+              throw  new Exception(e.getMessage());
+          } catch (Exception ex) {
+              Logger.getLogger(RepositorioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+          
+        return loginUsuario;
+ 
+    }
     
+
 }

@@ -91,12 +91,13 @@ public class RepositorioConsultas implements InterfaceRepositorioConsultas {
     @Override
     public Consultas filtrarConsultaCpfPaciente(Long cpf) {
     this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
-      Consultas consulta = new Consultas();
+      Consultas consulta = null;
         try{	    	 
 	  String sql = "select * from consultas";	    	
 	    this.stm = conexao.prepareStatement(sql);
 	        this.rs = stm.executeQuery();
-       		    while(this.rs.next()){	 				
+       		    while(this.rs.next()){
+                        consulta = new Consultas();
 	 		if(cpf.equals(this.rs.getLong("cpf_paciente"))){	 			
 	 		        consulta.getPaciente().setNome(this.rs.getString("nome_paciente"));
 	         		consulta.getPaciente().setCpf(this.rs.getLong("cpf_paciente"));
@@ -206,6 +207,37 @@ public class RepositorioConsultas implements InterfaceRepositorioConsultas {
         }         
         return consultas;
 
+    }
+    
+    public boolean checarHoraDataConsulta(String data, String hora) {
+      this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
+        boolean boleano = false;
+        
+        try{	    	 
+	  String sql = "select * from consultas";	    	
+	    this.stm = conexao.prepareStatement(sql);
+	        this.rs = stm.executeQuery();
+       		    while(this.rs.next()){
+                       
+	 		if(data.equals(this.rs.getString("dia_consulta"))){
+                          if(hora.equals(this.rs.getString("hora_consulta"))) { 
+                              boleano = true;
+	 		        	}
+                        }		 				
+	 			}
+	 			this.stm.close();
+	 			this.rs.close();
+                                this.conexao.close();
+        }catch(SQLException e) {
+          try {
+              throw  new Exception(e.getMessage());
+          } catch (Exception ex) {
+              Logger.getLogger(RepositorioConsultas.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+      
+        
+        return boleano;  
     }
     
 }

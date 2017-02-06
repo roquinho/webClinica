@@ -35,6 +35,9 @@ public interface Fachada {
     
     public void deletarMedico(Long cpf)throws ExceptionRegraNegocioDeletarMedicos;
     
+    public boolean checarLoginMedico(Long cpfMedico)throws ExceptionRegraNegocioBuscarMedicos;
+   
+   
    
     
     public void agendarConsulta(Consultas consulta)throws ExceptionRegraNegocioAgendarConsultas;
@@ -71,7 +74,7 @@ public interface Fachada {
     
     public void deletarUsuario(String cpf)throws ExceptionRegraNegocioDeletarUsuarios;
 
-
+    public boolean checarLoginUsuario(String cpfUsuario)throws ExceptionRegraNegociofiltrarUsuarios;
    
 }
 

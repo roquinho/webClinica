@@ -20,4 +20,6 @@ public interface InterfaceRegraNegocioExames {
     
     public void deletarExame(Long cpfPaciente)throws ExceptionRegraNegocioDeletarExames;
     
+    public boolean checarHoraDataExame(String hora, String data)throws ExceptionRegraNegocioFiltrarExame;
+    
 }

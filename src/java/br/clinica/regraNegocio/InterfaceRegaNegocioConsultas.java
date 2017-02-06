@@ -21,5 +21,7 @@ public interface InterfaceRegaNegocioConsultas {
     public void deletarConsulta(Long cpfPaciente)throws ExceptionRegraNegocioDeletarConsultas;
     
     public List<Consultas> filtrarNomeMedico(String nomeMedico)throws ExceptionRegraNegocioFiltrarConsultas;
+    
+    public boolean checarHoraDataConsulta(String hora, String data)throws ExceptionRegraNegocioFiltrarConsultas;
 
 }

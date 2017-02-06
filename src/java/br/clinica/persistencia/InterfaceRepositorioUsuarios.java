@@ -18,4 +18,6 @@ public interface InterfaceRepositorioUsuarios {
     public void atualizarUsuario(Usuarios usuario);
     
     public void deletarUsuario(String cpf);
+    
+    public boolean checarLoginUsuario(String cpfUsuario);
 }

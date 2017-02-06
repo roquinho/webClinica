@@ -21,4 +21,6 @@ public interface InterfaceRepositorioConsultas {
     public void deletarConsulta(Long cpfPaciente);
     
     public List<Consultas> filtrarNomeMedico(String nomeMedico);
+    
+    public boolean checarHoraDataConsulta(String data, String hora);
 }

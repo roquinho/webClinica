@@ -81,6 +81,10 @@ public class FachadaImplementa implements Fachada {
     public void deletarMedico(Long cpf) throws ExceptionRegraNegocioDeletarMedicos {
       medicos.deletarMedico(cpf);
     }
+    @Override
+    public boolean checarLoginMedico(Long cpfMedico) throws ExceptionRegraNegocioBuscarMedicos {
+       return this.medicos.checarLoginMedico(cpfMedico);
+    }
 
     
     
@@ -165,6 +169,12 @@ public class FachadaImplementa implements Fachada {
     public Usuarios filtrarUsuarioCpf(String cpf) throws ExceptionRegraNegociofiltrarUsuarios {
         return this.usuarios.filtrarUsuarioCpf(cpf);
     }
+
+    @Override
+    public boolean checarLoginUsuario(String cpfUsuario) throws ExceptionRegraNegociofiltrarUsuarios {
+        return this.usuarios.checarLoginUsuario(cpfUsuario);
+    }
+ 
 
 
     

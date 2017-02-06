@@ -19,4 +19,6 @@ public interface InterfaceRepositorioMedicos {
     public void atualizarMedico(Medicos medico);
     
     public void deletarMedico(Long cpf);
+    
+    public boolean checarLoginMedico(Long cpfMedico);
 }

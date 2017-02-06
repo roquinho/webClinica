@@ -6,6 +6,8 @@ import br.clinica.persistencia.InterfaceRepositorioExames;
 import br.clinica.persistencia.RepositorioExames;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,9 +38,16 @@ public class RegraNegocioExames implements InterfaceRegraNegocioExames {
         if(exame.getPaciente().getCpf()==null) {
             throw new ExceptionRegraNegocioAgendarExame();
         }
-        else {
-            exame.getPaciente().getExames().add(exame);
-            rne.agendarExame(exame);
+        try {
+            if(checarHoraDataExame(exame.getHoraExame(), exame.getDataExame())==true) {
+                throw new ExceptionRegraNegocioAgendarExame();
+            }
+            else {
+                exame.getPaciente().getExames().add(exame);
+                rne.agendarExame(exame);
+            }
+        } catch (ExceptionRegraNegocioFiltrarExame ex) {
+            Logger.getLogger(RegraNegocioExames.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     @Override
@@ -95,6 +104,21 @@ public class RegraNegocioExames implements InterfaceRegraNegocioExames {
         else {
             rne.deletarExame(cpfPaciente);
         }
+    }
+
+    @Override
+    public boolean checarHoraDataExame(String hora, String data) throws ExceptionRegraNegocioFiltrarExame {
+       boolean boleano;
+        if(hora == null) {
+            throw new ExceptionRegraNegocioFiltrarExame();
+        }
+        if(data == null) {
+            throw new ExceptionRegraNegocioFiltrarExame();
+        }
+        else {
+            boleano = this.rne.checarHoraDataExame(hora, data);
+        }
+        return boleano;
     }
     
 }

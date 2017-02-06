@@ -116,4 +116,16 @@ public class RegraNegocioMedicos implements InterfaceRegraNegocioMedicos {
         this.rm = rm;
     }
 
+    @Override
+    public boolean checarLoginMedico(Long cpfMedico) throws ExceptionRegraNegocioBuscarMedicos {
+       boolean loginMedico= false; 
+        if(cpfMedico==null) {
+            throw new ExceptionRegraNegocioBuscarMedicos();
+        }
+        else {
+            loginMedico = this.rm.checarLoginMedico(cpfMedico);
+        }
+        return loginMedico;
+    }
+     
 }

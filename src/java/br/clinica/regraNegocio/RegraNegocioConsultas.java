@@ -6,6 +6,8 @@ import br.clinica.persistencia.InterfaceRepositorioConsultas;
 import br.clinica.persistencia.RepositorioConsultas;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,11 +38,17 @@ public class RegraNegocioConsultas implements InterfaceRegaNegocioConsultas {
         if(consulta.getDiaConsulta()== null) {
             throw new ExceptionRegraNegocioAgendarConsultas();
         }
-        else {
-            consulta.getPaciente().getConsultas().add(consulta);
-            consulta.getMedico().getConsultas().add(consulta);
-            rc.agendarConsulta(consulta);            
-        }
+           try {
+               if(checarHoraDataConsulta(consulta.getHoraConsulta(), consulta.getDiaConsulta())==true) {
+                 throw new ExceptionRegraNegocioAgendarConsultas();
+               }
+               else {
+                   consulta.getPaciente().getConsultas().add(consulta);
+                   consulta.getMedico().getConsultas().add(consulta);
+                   rc.agendarConsulta(consulta);
+               }  } catch (ExceptionRegraNegocioFiltrarConsultas ex) {
+               Logger.getLogger(RegraNegocioConsultas.class.getName()).log(Level.SEVERE, null, ex);
+           }
         
     }
 
@@ -114,5 +122,22 @@ public class RegraNegocioConsultas implements InterfaceRegaNegocioConsultas {
         return consultas;
  
     }
+
     
+    @Override
+    public boolean checarHoraDataConsulta(String hora, String data) throws ExceptionRegraNegocioFiltrarConsultas {
+        boolean boleano = false;
+        
+        if(hora == null) {
+            throw new ExceptionRegraNegocioFiltrarConsultas();
+        }
+        if(data == null) {
+            throw new ExceptionRegraNegocioFiltrarConsultas();
+        }
+        else {
+            boleano = this.rc.checarHoraDataConsulta(data, hora);
+        }
+        return boleano;
+        
+    }
 }

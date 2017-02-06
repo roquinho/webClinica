@@ -181,7 +181,34 @@ public class RepositorioMedicos implements InterfaceRepositorioMedicos {
 
          }
     }
-
+@Override
+    public boolean checarLoginMedico(Long cpfMedico) {
+       this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
+         boolean loginMedico = false;
+        try{	    	 
+	  String sql = "select * from medicos";	    	
+	    this.stm = conexao.prepareStatement(sql);
+	        this.rs = stm.executeQuery();
+       		    while(this.rs.next()){	 				
+	 		if(cpfMedico==this.rs.getLong("cpf")){
+                            loginMedico = true;
+                            
+	 		        	}
+	 					 				
+	 			}
+	 			this.stm.close();
+	 			this.rs.close();
+                                this.conexao.close();
+        }catch(SQLException e) {
+          try {
+              throw  new Exception(e.getMessage());
+          } catch (Exception ex) {
+              Logger.getLogger(RepositorioMedicos.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+          
+        return loginMedico; 
+    }
     public Connection getConexao() {
         return conexao;
     }
@@ -205,5 +232,7 @@ public class RepositorioMedicos implements InterfaceRepositorioMedicos {
     public void setRs(ResultSet rs) {
         this.rs = rs;
     }
+
+    
     
 }

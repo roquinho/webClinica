@@ -20,4 +20,6 @@ public interface InterfaceRegraNegocioMedicos {
     public void atualizarMedico(Medicos medico)throws ExceptionRegraNegocioAtualizarMedicos;
     
     public void deletarMedico(Long cpf)throws ExceptionRegraNegocioDeletarMedicos;
+    
+    public boolean checarLoginMedico(Long cpfMedico)throws ExceptionRegraNegocioBuscarMedicos;
 }

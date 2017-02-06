@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  *
  * @author manoel
  */
-public class RepositorioExames implements InterfaceRepositorioExames{
+public class RepositorioExames implements InterfaceRepositorioExames {
 
         private Connection conexao;
 	private PreparedStatement stm;
@@ -175,6 +175,35 @@ public class RepositorioExames implements InterfaceRepositorioExames{
            }
 
          }
+    }
+
+    @Override
+    public boolean checarHoraDataExame(String hora, String data) {
+    this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
+       boolean boleano = false;
+        try{	    	 
+	  String sql = "select * from exames";	    	
+	    this.stm = conexao.prepareStatement(sql);
+	        this.rs = stm.executeQuery();
+       		    while(this.rs.next()){	 				
+	 		if(hora.equals(this.rs.getString("hora_exame"))){	 			
+	 		  if(data.equals(this.rs.getString("dia_exame"))) {
+                              boleano = true;
+                          }      
+                        }
+	 					 				
+	 			}
+	 			this.stm.close();
+	 			this.rs.close();
+                                this.conexao.close();
+        }catch(SQLException e) {
+          try {
+              throw  new Exception(e.getMessage());
+          } catch (Exception ex) {
+              Logger.getLogger(RepositorioExames.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+        return boleano;
     }
     
     

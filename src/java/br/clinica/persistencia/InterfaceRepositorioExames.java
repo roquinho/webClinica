@@ -20,4 +20,6 @@ public interface InterfaceRepositorioExames {
     
     public void deletarExame(Long cpfPaciente);
     
+    public boolean checarHoraDataExame(String hora, String data);
+    
 }
