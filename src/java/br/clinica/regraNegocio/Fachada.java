@@ -20,6 +20,9 @@ public interface Fachada {
     
     public void deletarPaciente(Long cpf)throws ExceptionRegraNegocioDeletarPacientes;
     
+    public boolean checarLoginPaciente(Long cpfPaciente)throws ExceptionRegraNegocioPacienteBuscarPaciente;
+    
+    
     
     
     public void cadastrarMedicos(Medicos medico)throws ExceptionRegraNegocioCadastrarMedicos;
@@ -30,7 +33,7 @@ public interface Fachada {
     
     public void atualizarMedico(Medicos medico)throws ExceptionRegraNegocioAtualizarMedicos;
     
-    public void deletarMedico(Medicos medico)throws ExceptionRegraNegocioDeletarMedicos;
+    public void deletarMedico(Long cpf)throws ExceptionRegraNegocioDeletarMedicos;
     
    
     
@@ -42,7 +45,7 @@ public interface Fachada {
     
     public void atualizarConsulta(Consultas consulta)throws ExceptionRegraNegocioAtualizarConsultas;
     
-    public void deletarConsulta(Consultas consulta)throws ExceptionRegraNegocioDeletarConsultas;
+    public void deletarConsulta(Long cpfPaciente)throws ExceptionRegraNegocioDeletarConsultas;
     
     public List<Consultas> filtrarNomeMedico(String nomeMedico)throws ExceptionRegraNegocioFiltrarConsultas;
     
@@ -55,7 +58,7 @@ public interface Fachada {
     
     public void atualizarExame(Exames exame)throws ExceptionRegraNegocioAtualizarExames;
     
-    public void deletarExame(Exames exame)throws ExceptionRegraNegocioDeletarExames;
+    public void deletarExame(Long cpfPaciente)throws ExceptionRegraNegocioDeletarExames;
     
     
     public void cadastrarUsuario(Usuarios usuario)throws ExceptionRegraNegocioCadastrarUsuarios;
@@ -66,7 +69,7 @@ public interface Fachada {
     
     public void atualizarUsuario(Usuarios usuario)throws ExceptionRegraNegocioAtualizarUsuarios;
     
-    public void deletarUsuario(Usuarios usuario)throws ExceptionRegraNegocioDeletarUsuarios;
+    public void deletarUsuario(String cpf)throws ExceptionRegraNegocioDeletarUsuarios;
 
 
    

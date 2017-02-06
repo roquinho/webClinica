@@ -57,13 +57,15 @@ public class RepositorioMedicos implements InterfaceRepositorioMedicos {
     @Override
     public Medicos buscarMedicoCpf(Long cpf) {
         this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
-         Medicos medico = new Medicos();
+         Medicos medico = null;
         try{	    	 
 	  String sql = "select * from medicos";	    	
 	    this.stm = conexao.prepareStatement(sql);
 	        this.rs = stm.executeQuery();
        		    while(this.rs.next()){	 				
-	 		if(cpf.equals(this.rs.getLong("cpf"))){	 			
+	 		if(cpf==this.rs.getLong("cpf")){
+                            medico = new Medicos();
+                            
 	 		        medico.setNome(this.rs.getString("nome"));
 	         		medico.setEndereco(this.rs.getString("endereco"));
 	 			medico.setCpf(this.rs.getLong("cpf"));
@@ -153,17 +155,17 @@ public class RepositorioMedicos implements InterfaceRepositorioMedicos {
     }
 
     @Override
-    public void deletarMedico(Medicos medico) {
+    public void deletarMedico(Long cpf) {
         this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica"); 
          try{
 	    	String sql = "select * from medicos";	
 		 	this.stm = conexao.prepareStatement(sql);
 		 	 this.rs=stm.executeQuery();		 	
 		 	  while(this.rs.next()){		  		
-	    	            if(medico.getCpf().equals(this.rs.getLong("cpf"))){	    			    
+	    	            if(cpf.equals(this.rs.getLong("cpf"))){	    			    
 	    	                String sqlexcluir = "delete from medicos where cpf =?" ;	    	
 	    	                  this.stm = conexao.prepareStatement(sqlexcluir);				
-	    	                          this.stm.setLong(1,medico.getCpf());
+	    	                          this.stm.setLong(1,cpf);
 			                    this.stm.execute();
                              }
                           }

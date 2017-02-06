@@ -17,4 +17,6 @@ public interface InterfaceRegraNegocioPacientes {
     
     public void deletarPaciente(Long cpf)throws ExceptionRegraNegocioDeletarPacientes;
     
+    public boolean checarLoginPaciente(Long cpfPaciente)throws ExceptionRegraNegocioPacienteBuscarPaciente;
+    
 }

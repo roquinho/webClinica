@@ -92,12 +92,12 @@ public class RegraNegocioConsultas implements InterfaceRegaNegocioConsultas {
     }
 
     @Override
-    public void deletarConsulta(Consultas consulta) throws ExceptionRegraNegocioDeletarConsultas {
-        if(consulta == null) {
+    public void deletarConsulta(Long cpfPaciente) throws ExceptionRegraNegocioDeletarConsultas {
+        if(cpfPaciente == null) {
             throw new ExceptionRegraNegocioDeletarConsultas();
         }
         else {
-            rc.deletarConsulta(consulta);
+            rc.deletarConsulta(cpfPaciente);
         }
     }
 

@@ -2,6 +2,7 @@
 package Controller;
 
 import br.clinica.entidades.Pacientes;
+import br.clinica.regraNegocio.ExceptionRegraNegocioDeletarPacientes;
 import br.clinica.regraNegocio.ExceptionRegraNegocioPacientesCadastrar;
 import br.clinica.regraNegocio.Fachada;
 import br.clinica.regraNegocio.FachadaImplementa;
@@ -26,7 +27,17 @@ public class PacientesServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String cpf = request.getParameter("cpf");
+        Long cpff = Long.parseLong(cpf);
+        
+        Fachada fachada = new FachadaImplementa();
+            
+        try {
+            fachada.deletarPaciente(cpff);
+        } catch (ExceptionRegraNegocioDeletarPacientes ex) {
+            Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override

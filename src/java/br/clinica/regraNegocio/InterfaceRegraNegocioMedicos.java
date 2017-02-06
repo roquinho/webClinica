@@ -19,5 +19,5 @@ public interface InterfaceRegraNegocioMedicos {
     
     public void atualizarMedico(Medicos medico)throws ExceptionRegraNegocioAtualizarMedicos;
     
-    public void deletarMedico(Medicos medico)throws ExceptionRegraNegocioDeletarMedicos;
+    public void deletarMedico(Long cpf)throws ExceptionRegraNegocioDeletarMedicos;
 }

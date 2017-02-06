@@ -18,6 +18,6 @@ public interface InterfaceRegraNegocioExames {
     
     public void atualizarExame(Exames exame)throws ExceptionRegraNegocioAtualizarExames;
     
-    public void deletarExame(Exames exame)throws ExceptionRegraNegocioDeletarExames;
+    public void deletarExame(Long cpfPaciente)throws ExceptionRegraNegocioDeletarExames;
     
 }

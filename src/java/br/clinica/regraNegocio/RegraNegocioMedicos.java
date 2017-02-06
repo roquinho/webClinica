@@ -5,6 +5,8 @@ import br.clinica.entidades.Medicos;
 import br.clinica.persistencia.InterfaceRepositorioMedicos;
 import br.clinica.persistencia.RepositorioMedicos;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,12 +33,15 @@ public class RegraNegocioMedicos implements InterfaceRegraNegocioMedicos {
         if(medico.getCrm()==null) {
             throw new ExceptionRegraNegocioCadastrarMedicos();
         }
-        if(rm.buscarMedicoCpf(medico.getCpf())!=null) {
-            throw new ExceptionRegraNegocioCadastrarMedicos();
-        }
-        else {
-           rm.cadastrarMedicos(medico);
-        }
+         try {
+             if(buscarMedicoCpf(medico.getCpf())!=null) {
+                 throw new ExceptionRegraNegocioCadastrarMedicos();
+             }
+             else {
+                 rm.cadastrarMedicos(medico);
+             }} catch (ExceptionRegraNegocioBuscarMedicos ex) {
+             Logger.getLogger(RegraNegocioMedicos.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     @Override
@@ -87,16 +92,19 @@ public class RegraNegocioMedicos implements InterfaceRegraNegocioMedicos {
     }
 
     @Override
-    public void deletarMedico(Medicos medico) throws ExceptionRegraNegocioDeletarMedicos {
-        if(medico == null) {
+    public void deletarMedico(Long cpf) throws ExceptionRegraNegocioDeletarMedicos {
+        if(cpf == null) {
            throw new ExceptionRegraNegocioDeletarMedicos();
        }
-        if(rm.buscarMedicoCpf(medico.getCpf())==null) {
-            throw new ExceptionRegraNegocioDeletarMedicos();
-        }
-       else {
-           rm.deletarMedico(medico);
-       }
+         try {
+             if(buscarMedicoCpf(cpf)==null) {
+                 throw new ExceptionRegraNegocioDeletarMedicos();
+             }
+             else {
+                 rm.deletarMedico(cpf);
+             } } catch (ExceptionRegraNegocioBuscarMedicos ex) {
+             Logger.getLogger(RegraNegocioMedicos.class.getName()).log(Level.SEVERE, null, ex);
+         }
        }
        
 

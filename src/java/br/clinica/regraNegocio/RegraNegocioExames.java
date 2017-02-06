@@ -88,12 +88,12 @@ public class RegraNegocioExames implements InterfaceRegraNegocioExames {
     }
 
     @Override
-    public void deletarExame(Exames exame) throws ExceptionRegraNegocioDeletarExames {
-        if(exame == null) {
+    public void deletarExame(Long cpfPaciente) throws ExceptionRegraNegocioDeletarExames {
+        if(cpfPaciente == null) {
             throw new ExceptionRegraNegocioDeletarExames();
         }
         else {
-            rne.deletarExame(exame);
+            rne.deletarExame(cpfPaciente);
         }
     }
     

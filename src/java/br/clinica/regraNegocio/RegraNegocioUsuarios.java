@@ -4,6 +4,8 @@ package br.clinica.regraNegocio;
 import br.clinica.entidades.Usuarios;
 import br.clinica.persistencia.InterfaceRepositorioUsuarios;
 import br.clinica.persistencia.RepositorioUsuarios;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -30,12 +32,15 @@ public class RegraNegocioUsuarios implements InterfaceRegraNegocioUsuarios {
        if(usuario.getTipoUsuario()==null) {
            throw new ExceptionRegraNegocioCadastrarUsuarios();
        }
-       if(ru.filtrarUsuarioCpf(usuario.getCpf())!=null) {
-           throw new ExceptionRegraNegocioCadastrarUsuarios();
-       }
-       else {
-          ru.cadastrarUsuario(usuario);
-       }
+         try {
+             if(filtrarUsuarioCpf(usuario.getCpf())!=null) {
+                 throw new ExceptionRegraNegocioCadastrarUsuarios();
+             }
+             else {
+                 ru.cadastrarUsuario(usuario);
+             } } catch (ExceptionRegraNegociofiltrarUsuarios ex) {
+             Logger.getLogger(RegraNegocioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
     @Override
@@ -87,16 +92,19 @@ public class RegraNegocioUsuarios implements InterfaceRegraNegocioUsuarios {
     }
 
     @Override
-    public void deletarUsuario(Usuarios usuario) throws ExceptionRegraNegocioDeletarUsuarios {
-        if(usuario == null) {
+    public void deletarUsuario(String cpf) throws ExceptionRegraNegocioDeletarUsuarios {
+        if(cpf == null) {
             throw new ExceptionRegraNegocioDeletarUsuarios();
         }
-       if(ru.filtrarUsuarioCpf(usuario.getCpf())==null) {
-           throw new ExceptionRegraNegocioDeletarUsuarios();
-       }
-        else {
-            ru.deletarUsuario(usuario);
-        }
+         try {
+             if(filtrarUsuarioCpf(cpf)==null) {
+                 throw new ExceptionRegraNegocioDeletarUsuarios();
+             }
+             else {
+                 ru.deletarUsuario(cpf);
+             }} catch (ExceptionRegraNegociofiltrarUsuarios ex) {
+             Logger.getLogger(RegraNegocioUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+         }
     }
 
 

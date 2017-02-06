@@ -149,17 +149,17 @@ public class RepositorioExames implements InterfaceRepositorioExames{
     }
 
     @Override
-    public void deletarExame(Exames exame) {
+    public void deletarExame(Long cpfPaciente) {
         this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica"); 
          try{
 	    	String sql = "select * from exames";	
 		 	this.stm = conexao.prepareStatement(sql);
 		 	 this.rs=stm.executeQuery();		 	
 		 	  while(this.rs.next()){		  		
-	    	            if(exame.getPaciente().getCpf().equals(this.rs.getLong("cpf_paciente"))){	    			    
+	    	            if(cpfPaciente.equals(this.rs.getLong("cpf_paciente"))){	    			    
 	    	                String sqlexcluir = "delete from exames where cpf_paciente =?" ;	    	
 	    	                  this.stm = conexao.prepareStatement(sqlexcluir);				
-	    	                          this.stm.setLong(1,exame.getPaciente().getCpf());
+	    	                          this.stm.setLong(1,cpfPaciente);
 			                    this.stm.execute();
                              }
                           }

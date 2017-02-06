@@ -17,5 +17,5 @@ public interface InterfaceRepositorioUsuarios {
     
     public void atualizarUsuario(Usuarios usuario);
     
-    public void deletarUsuario(Usuarios usuario);
+    public void deletarUsuario(String cpf);
 }

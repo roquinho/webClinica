@@ -18,5 +18,5 @@ public interface InterfaceRepositorioMedicos {
     
     public void atualizarMedico(Medicos medico);
     
-    public void deletarMedico(Medicos medico);
+    public void deletarMedico(Long cpf);
 }

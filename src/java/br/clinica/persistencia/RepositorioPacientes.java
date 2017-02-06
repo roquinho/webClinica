@@ -215,6 +215,43 @@ finally {
                }
     }
     }
+    
+    @Override
+    public boolean checarLoginPaciente(Long cpfPaciente) {
+      this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
+      boolean login = false;
+        
+        try{	    	 
+	  String sql = "select * from pacientes";	    	
+	    this.stm = conexao.prepareStatement(sql);
+	        this.rs = stm.executeQuery();
+       		    while(this.rs.next()){	 				
+	 		if(cpfPaciente==this.rs.getLong("cpf")){
+                            login = true;
+                            		}	 					 				
+	 			}
+	 			this.stm.close();
+	 			this.rs.close();
+                                this.conexao.close();
+        }catch(SQLException e) {
+          try {
+              throw  new Exception(e.getMessage());
+          } catch (Exception ex) {
+              Logger.getLogger(RepositorioPacientes.class.getName()).log(Level.SEVERE, null, ex);
+          }
+        }
+        finally {
+               try { 
+                   this.conexao.close();
+               } catch (SQLException ex) {
+                   Logger.getLogger(RepositorioPacientes.class.getName()).log(Level.SEVERE, null, ex);
+               }
+    }  
+        return login;
+    }
+
+    
+	
               
     public Connection getConexao() {
         return conexao;
@@ -239,6 +276,7 @@ finally {
     public void setRs(ResultSet rs) {
         this.rs = rs;
     }
-	
+
+    
     
 }

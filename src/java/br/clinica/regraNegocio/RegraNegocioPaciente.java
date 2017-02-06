@@ -37,7 +37,7 @@ public class RegraNegocioPaciente implements InterfaceRegraNegocioPacientes{
              }
              else {
                  rp.cadastrarPaciente(paciente);
-             }
+            }
          } catch (ExceptionRegraNegocioPacienteBuscarPaciente ex) {
              Logger.getLogger(RegraNegocioPaciente.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -108,5 +108,18 @@ public class RegraNegocioPaciente implements InterfaceRegraNegocioPacientes{
              Logger.getLogger(RegraNegocioPaciente.class.getName()).log(Level.SEVERE, null, ex);
          }
        }
+
+    @Override
+    public boolean checarLoginPaciente(Long cpfPaciente) throws ExceptionRegraNegocioPacienteBuscarPaciente {
+       boolean login=false;
+       
+        if(cpfPaciente==null) {
+            throw new ExceptionRegraNegocioPacienteBuscarPaciente();
+        }
+        else {
+           login = this.rp.checarLoginPaciente(cpfPaciente);
+        }
+        return login;
+    }
        
 }

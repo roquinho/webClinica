@@ -144,17 +144,17 @@ public class RepositorioConsultas implements InterfaceRepositorioConsultas {
     }
 
     @Override
-    public void deletarConsulta(Consultas consulta) {
+    public void deletarConsulta(Long cpfPaciente) {
         this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica"); 
          try{
 	    	String sql = "select * from consultas";	
 		 	this.stm = conexao.prepareStatement(sql);
 		 	 this.rs=stm.executeQuery();		 	
 		 	  while(this.rs.next()){		  		
-	    	            if(consulta.getPaciente().getCpf().equals(this.rs.getLong("cpf_paciente"))){	    			    
+	    	            if(cpfPaciente.equals(this.rs.getLong("cpf_paciente"))){	    			    
 	    	                String sqlexcluir = "delete from consultas where cpf_paciente =?" ;	    	
 	    	                  this.stm = conexao.prepareStatement(sqlexcluir);				
-	    	                          this.stm.setLong(1,consulta.getPaciente().getCpf());
+	    	                          this.stm.setLong(1,cpfPaciente);
 			                    this.stm.execute();
                              }
                           }

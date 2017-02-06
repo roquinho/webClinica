@@ -48,6 +48,13 @@ public class FachadaImplementa implements Fachada {
         pacientes.deletarPaciente(cpf);
     }
 
+    @Override
+    public boolean checarLoginPaciente(Long cpfPaciente) throws ExceptionRegraNegocioPacienteBuscarPaciente {
+       return this.pacientes.checarLoginPaciente(cpfPaciente);
+    }
+
+    
+    
     
     
     @Override
@@ -71,8 +78,8 @@ public class FachadaImplementa implements Fachada {
     }
 
     @Override
-    public void deletarMedico(Medicos medico) throws ExceptionRegraNegocioDeletarMedicos {
-      medicos.deletarMedico(medico);
+    public void deletarMedico(Long cpf) throws ExceptionRegraNegocioDeletarMedicos {
+      medicos.deletarMedico(cpf);
     }
 
     
@@ -98,8 +105,8 @@ public class FachadaImplementa implements Fachada {
     }
 
     @Override
-    public void deletarConsulta(Consultas consulta) throws ExceptionRegraNegocioDeletarConsultas {
-        this.consultas.deletarConsulta(consulta);
+    public void deletarConsulta(Long cpfPaciente) throws ExceptionRegraNegocioDeletarConsultas {
+        this.consultas.deletarConsulta(cpfPaciente);
     }
     
     @Override
@@ -128,8 +135,8 @@ public class FachadaImplementa implements Fachada {
     }
 
     @Override
-    public void deletarExame(Exames exame) throws ExceptionRegraNegocioDeletarExames {
-        this.exames.deletarExame(exame);
+    public void deletarExame(Long cpfPaciente) throws ExceptionRegraNegocioDeletarExames {
+        this.exames.deletarExame(cpfPaciente);
     }
 
     
@@ -150,8 +157,8 @@ public class FachadaImplementa implements Fachada {
     }
 
     @Override
-    public void deletarUsuario(Usuarios usuario) throws ExceptionRegraNegocioDeletarUsuarios {
-        this.usuarios.deletarUsuario(usuario);
+    public void deletarUsuario(String cpf) throws ExceptionRegraNegocioDeletarUsuarios {
+        this.usuarios.deletarUsuario(cpf);
     }
 
     @Override

@@ -18,6 +18,6 @@ public interface InterfaceRepositorioExames {
     
     public void atualizarExame(Exames exame);
     
-    public void deletarExame(Exames exame);
+    public void deletarExame(Long cpfPaciente);
     
 }

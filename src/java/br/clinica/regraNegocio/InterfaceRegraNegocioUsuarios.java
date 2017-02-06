@@ -17,5 +17,5 @@ public interface InterfaceRegraNegocioUsuarios {
     
     public void atualizarUsuario(Usuarios usuario)throws ExceptionRegraNegocioAtualizarUsuarios;
     
-    public void deletarUsuario(Usuarios usuario)throws ExceptionRegraNegocioDeletarUsuarios;
+    public void deletarUsuario(String cpf)throws ExceptionRegraNegocioDeletarUsuarios;
 }

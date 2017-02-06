@@ -52,13 +52,16 @@ public class RepositorioUsuarios implements InterfaceRepositorioUsuarios{
     @Override
     public Usuarios buscarUsuarioSenhaNome(String senha,String nome) {
         this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
-       Usuarios usuario = new Usuarios();
+       Usuarios usuario = null;
         try{	    	 
 	  String sql = "select * from usuarios";	    	
 	    this.stm = conexao.prepareStatement(sql);
 	        this.rs = stm.executeQuery();
        		    while(this.rs.next()){	 				
 	 		if(senha.equals(this.rs.getString("senha"))){
+                            
+                            usuario = new Usuarios();
+                            
                              if(nome.equals(this.rs.getString("nome"))) {
 	 		        usuario.setNome(this.rs.getString("nome"));
 	         		usuario.setSenha(this.rs.getString("senha"));
@@ -85,13 +88,15 @@ public class RepositorioUsuarios implements InterfaceRepositorioUsuarios{
     @Override
     public Usuarios filtrarUsuarioCpf(String cpf) {
        this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica");
-        Usuarios usuario = new Usuarios();
+        Usuarios usuario = null;
          try{	    	 
 	  String sql = "select * from usuarios";	    	
 	    this.stm = conexao.prepareStatement(sql);
 	        this.rs = stm.executeQuery();
        		    while(this.rs.next()){	 				
-	 		if(cpf.equals(this.rs.getString("cpf"))){	 
+	 		if(cpf.equals(this.rs.getString("cpf"))){
+                            usuario = new Usuarios();
+                            
                                 usuario.setNome(this.rs.getString("nome"));
 	         		usuario.setSenha(this.rs.getString("senha"));
 	 			usuario.setCpf(this.rs.getString("cpf"));
@@ -141,17 +146,17 @@ public class RepositorioUsuarios implements InterfaceRepositorioUsuarios{
     }
 
     @Override
-    public void deletarUsuario(Usuarios usuario) {
+    public void deletarUsuario(String cpf) {
         this.conexao = new ConexaoBancoDeDados().conectar("root", "12345","localhost", "clinica"); 
          try{
 	    	String sql = "select * from usuarios";	
 		 	this.stm = conexao.prepareStatement(sql);
 		 	 this.rs=stm.executeQuery();		 	
 		 	  while(this.rs.next()){		  		
-	    	            if(usuario.getCpf().equals(this.rs.getString("cpf"))){	    			    
+	    	            if(cpf.equals(this.rs.getString("cpf"))){	    			    
 	    	                String sqlexcluir = "delete from usuarios where cpf =?" ;	    	
 	    	                  this.stm = conexao.prepareStatement(sqlexcluir);				
-	    	                          this.stm.setString(1,usuario.getCpf());
+	    	                          this.stm.setString(1,cpf);
 			                    this.stm.execute();
                              }
                           }

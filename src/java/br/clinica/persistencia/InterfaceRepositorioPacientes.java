@@ -17,5 +17,7 @@ public interface InterfaceRepositorioPacientes {
     
     public void deletarPaciente(Long cpf);
     
+    public boolean checarLoginPaciente(Long cpfPaciente);
+    
     
 }
