@@ -31,7 +31,42 @@ public class ControleAcessoServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-              
+          
+        String nome = request.getParameter("inputNome");
+        String cpff = request.getParameter("cpf");
+        Long cpf = Long.parseLong(cpff);
+        
+        Fachada fachada = new FachadaImplementa();
+        boolean login = false;
+        boolean loginUsuario = false;
+        boolean loginMedico= false;        
+        ArrayList<Boolean> listaboleano = new ArrayList<>();
+        
+        try {
+             login = fachada.checarLoginPaciente(cpf);
+              listaboleano.add(login);
+        } catch (ExceptionRegraNegocioPacienteBuscarPaciente ex) {
+            Logger.getLogger(ControleAcessoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            loginMedico = fachada.checarLoginMedico(cpf);
+             listaboleano.add(loginMedico);
+        } catch (ExceptionRegraNegocioBuscarMedicos ex) {
+            Logger.getLogger(ControleAcessoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                        
+        try {
+          loginUsuario = fachada.checarLoginUsuario(cpff);
+          listaboleano.add(loginUsuario);
+        } catch (ExceptionRegraNegociofiltrarUsuarios ex) {
+            Logger.getLogger(ControleAcessoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }       
+            
+        request.setAttribute("login", listaboleano);
+        RequestDispatcher view = request.getRequestDispatcher("LoginPacienteView.jsp");
+        view.forward(request, response);
+                        
     }
 
     @Override
@@ -44,46 +79,8 @@ public class ControleAcessoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String nome = request.getParameter("inputNome");
-        String cpff = request.getParameter("cpf");
-        Long cpf = Long.parseLong(cpff);
-        
-        Fachada fachada = new FachadaImplementa();
-        boolean login = false;
-        boolean loginUsuario = false;
-        boolean loginMedico= false;
-        
-        try {
-             login = fachada.checarLoginPaciente(cpf);
-        } catch (ExceptionRegraNegocioPacienteBuscarPaciente ex) {
-            Logger.getLogger(ControleAcessoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            loginMedico = fachada.checarLoginMedico(cpf);
-        } catch (ExceptionRegraNegocioBuscarMedicos ex) {
-            Logger.getLogger(ControleAcessoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-                        
-        try {
-            fachada.checarLoginUsuario(cpff);
-        } catch (ExceptionRegraNegociofiltrarUsuarios ex) {
-            Logger.getLogger(ControleAcessoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        ArrayList listaBoolean = new ArrayList();
-        listaBoolean.add(login);
-        listaBoolean.add(loginMedico);
-        listaBoolean.add(loginUsuario);
-        
-        
-        request.setAttribute("styles",listaBoolean);
-        RequestDispatcher view = request.getRequestDispatcher("LoginView.jsp");
-        view.forward(request, response);
-        
-        
-        
-         
+        processRequest(request, response);
+               
     }
 
     @Override
