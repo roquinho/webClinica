@@ -45,8 +45,18 @@ public class ExamesServlets extends HttpServlet {
         
         try {
             fachada.agendarExame(exame);
+            
+        request.setAttribute("alerta", "exame marcado com sucesso");
+        RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+        view.forward(request, response);
+
         } catch (ExceptionRegraNegocioAgendarExame ex) {
             Logger.getLogger(ExamesServlets.class.getName()).log(Level.SEVERE, null, ex);
+            
+        request.setAttribute("alerta", "erro ao marcar exame "+ex);
+        RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+        view.forward(request, response);
+
         }  
         }
         
@@ -58,8 +68,18 @@ public class ExamesServlets extends HttpServlet {
         Fachada fachada = new FachadaImplementa();
         try {
             fachada.deletarExame(cpff);
+            
+        request.setAttribute("alerta", "exame deletado com sucesso");
+        RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+        view.forward(request, response);
+
         } catch (ExceptionRegraNegocioDeletarExames ex) {
             Logger.getLogger(ExamesServlets.class.getName()).log(Level.SEVERE, null, ex);
+            
+        request.setAttribute("alerta", "erro ao deletar "+ex);
+        RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+        view.forward(request, response);
+
         }  
         }
         else if(request.getParameter("buscar_exame")!=null) {

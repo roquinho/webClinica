@@ -53,8 +53,19 @@ public class ConsultasServlet extends HttpServlet {
         
             try {
                 fachada.agendarConsulta(consultas);
+                
+                
+         request.setAttribute("alerta", "consulta marcada com sucesso");
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
             } catch (ExceptionRegraNegocioAgendarConsultas ex) {
                 Logger.getLogger(ConsultasServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
+         request.setAttribute("alerta", "erro ao marcar Consulta "+ex);
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
             }
         
             }
@@ -66,8 +77,18 @@ public class ConsultasServlet extends HttpServlet {
         Fachada fachada = new FachadaImplementa();
         try {
             fachada.deletarConsulta(cpff);
+            
+         request.setAttribute("alerta", "consulta deletado com sucesso");
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
         } catch (ExceptionRegraNegocioDeletarConsultas ex) {
             Logger.getLogger(ExamesServlets.class.getName()).log(Level.SEVERE, null, ex);
+            
+         request.setAttribute("alerta", "erro ao deletar "+ex );
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
         }  
             }
             

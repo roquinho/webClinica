@@ -38,9 +38,19 @@ public class MedicosServlet extends HttpServlet {
         Fachada fachada = new FachadaImplementa();
         
         try {
-            fachada.cadastrarMedicos(medico);
+            fachada.cadastrarMedicos(medico); 
+            
+            request.setAttribute("alerta", "medico cadastrado com sucesso");
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
+
         } catch (ExceptionRegraNegocioCadastrarMedicos ex) {
             Logger.getLogger(MedicosServlet.class.getName()).log(Level.SEVERE, null, ex);
+            
+             request.setAttribute("alerta", "erro ao cadastrar "+ex);
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
+
         }
             }
         
@@ -51,8 +61,17 @@ public class MedicosServlet extends HttpServlet {
         Fachada fachada = new FachadaImplementa();
             try {
                 fachada.deletarMedico(cpff);
+                
+            request.setAttribute("alerta", "medico deletado com sucesso");
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
+            
             } catch (ExceptionRegraNegocioDeletarMedicos ex) {
                 Logger.getLogger(MedicosServlet.class.getName()).log(Level.SEVERE, null, ex);
+            
+            request.setAttribute("alerta", "erro ao deletar "+ex);
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
             }            
         }
         else if(request.getParameter("buscar_medico")!=null) {

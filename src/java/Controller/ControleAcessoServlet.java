@@ -63,7 +63,7 @@ public class ControleAcessoServlet extends HttpServlet {
         }       
             
         request.setAttribute("login", listaboleano);
-        RequestDispatcher view = request.getRequestDispatcher("LoginPacienteView.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("ViewLoginPacienteView.jsp");
         view.forward(request, response);
                         
     }

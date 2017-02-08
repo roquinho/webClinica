@@ -1,10 +1,9 @@
 <%-- 
-    Document   : pacientesBuscaJsp
-    Created on : 08/02/2017, 00:30:54
+    Document   : ViewPacienteCadastro
+    Created on : 08/02/2017, 01:19:19
     Author     : manoel
 --%>
 
-<%@page import="br.clinica.entidades.Pacientes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,13 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-      
         <%
-        Pacientes paciente = (Pacientes)request.getAttribute("buscaPaciente");
-         out.println(paciente);
-            %>
-          
+        String alerta = (String)request.getAttribute("alerta");
+           out.println(alerta);
+        %> 
     </body>
-        
-       
 </html>

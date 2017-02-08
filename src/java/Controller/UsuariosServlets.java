@@ -35,8 +35,17 @@ public class UsuariosServlets extends HttpServlet {
        
         try {
             fachada.cadastrarUsuario(usuario);
+            request.setAttribute("alerta", "usuario cadastrado com sucesso");
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
+
         } catch (ExceptionRegraNegocioCadastrarUsuarios ex) {
             Logger.getLogger(UsuariosServlets.class.getName()).log(Level.SEVERE, null, ex);
+            
+             request.setAttribute("alerta", "erro ao cadastrar "+ex);
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
+
         }
   
         }
@@ -49,8 +58,17 @@ public class UsuariosServlets extends HttpServlet {
         
         try {
             fachada.deletarUsuario(cpf);
+            
+            request.setAttribute("alerta", "usuario deletado com sucesso");
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
+            
         } catch (ExceptionRegraNegocioDeletarUsuarios ex) {
             Logger.getLogger(UsuariosServlets.class.getName()).log(Level.SEVERE, null, ex);
+            
+            request.setAttribute("alerta", "erro ao deletar "+ex);
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
         }
         
         }

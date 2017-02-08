@@ -38,8 +38,17 @@ public class PacientesServlet extends HttpServlet {
 
             try {
                 fachada.cadastrarPaciente(paciente);
+            request.setAttribute("alerta", "paciente cadastrado com sucesso");
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
+            
             } catch (ExceptionRegraNegocioPacientesCadastrar ex) {
                 Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+                   request.setAttribute("alerta", "erro ao cadastrar " + ex);
+                    RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+                        view.forward(request, response);
+            
+                   
             }         
 
                     
@@ -51,8 +60,17 @@ public class PacientesServlet extends HttpServlet {
 
             try {
                 fachada.deletarPaciente(cpff);
+                
+            request.setAttribute("alerta", "paciente deletado com sucesso");
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
+            
             } catch (ExceptionRegraNegocioDeletarPacientes ex) {
                 Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
+            request.setAttribute("alerta", "erro ao deletar "+ex);
+            RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+            view.forward(request, response);
             }
 
         } 
