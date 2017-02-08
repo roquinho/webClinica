@@ -24,17 +24,15 @@ public class UsuariosServlets extends HttpServlet {
         
         if(request.getParameter("cadastro_usuario")!=null) {
        
-        String nome = request.getParameter("inputName");
+        String nome = request.getParameter("inputNome");
         String cpf = request.getParameter("inputCpf");
         String senha = request.getParameter("inputSenha");
-        String tipoUsuario = request.getParameter("inputTipo");
+        String tipoUsuario = request.getParameter("inputTipoUsuario");
         
         Usuarios usuario = new Usuarios(nome, senha, tipoUsuario, cpf);
         
         Fachada fachada = new FachadaImplementa();
-        System.out.println(cpf);
-        System.out.println(usuario.getCpf());
-        
+       
         try {
             fachada.cadastrarUsuario(usuario);
         } catch (ExceptionRegraNegocioCadastrarUsuarios ex) {
@@ -44,7 +42,7 @@ public class UsuariosServlets extends HttpServlet {
         }
         
         else if(request.getParameter("deletar_usuario")!=null) {
-            String cpf = request.getParameter("cpf");
+            String cpf = request.getParameter("inputCpf");
         
         
         Fachada fachada = new FachadaImplementa();
@@ -57,7 +55,7 @@ public class UsuariosServlets extends HttpServlet {
         
         }
         else if(request.getParameter("buscar_usuario")!=null) {
-            String cpf = request.getParameter("cpf");
+            String cpf = request.getParameter("inputCpf");
         
         
         Fachada fachada = new FachadaImplementa();
@@ -69,7 +67,7 @@ public class UsuariosServlets extends HttpServlet {
             Logger.getLogger(UsuariosServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("buscaUsuario", usuario);
-            RequestDispatcher view = request.getRequestDispatcher("viewUsuario.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("ViewUsuarioBusca.jsp");
             view.forward(request, response);
 
         }

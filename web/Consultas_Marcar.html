@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="Consultas_Marcar.css">
+</head>
+<body>
+		<h1>Marcar Consulta</h1>
+	<div id="formulario">
+
+		<form action ="ConsultasServlet" method ="post">
+			
+			<h2>Dia:</h1> <input type="text" name="inputDia">
+			<h2>Horário:</h1> <input type="text" name="inputHora">
+			<h2>CPF do Médico:</h1> <input type="text" name="inputCpfMedico">
+			<h2>CPF do Paciênte:</h1> <input type="text" name="inputCpfPaciente">
+
+                        <input type="submit" name="marcar_consulta" value="Marcar" class="button">
+		</form> 
+
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+body{
+    background: #fff;
+    margin: 25px;
+}
+header,section,footer,aside{
+    display: block;
+}
+
+/*NAV*/
+#nav ul{
+    margin-top: 5px;
+    margin-left: 200px;
+}
+#nav li{
+    display:inline;
+    padding: 0 5px 0 55px;
+    font-size: 22px;
+}
+#nav{
+    background-color: #000000;
+}
+#nav a{
+    text-decoration: none;
+    color: #ccc;
+    padding: 8px;
+    font-variant:small-caps; 
+}
+#nav a:hover{
+    color: #ccc;
+}
+/*menu Dropdown*/
+
+.dropbtn {
+    background-color: #ccc;
+    color: #000;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #777;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ccc}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+#header h2{
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    text-transform: uppercase;
+}
+.social{
+    list-style-type: none;
+}
+
+.social li a{
+
+    float: right;
+    font-size:32px;
+    text-decoration: none;
+    color: #D3D3D3;
+    display: inline;
+    padding: 10px;
+    -o-transition:.5;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    -transition:.5s;
+}
+
+.social li a:hover{
+    color: #2F4F4F;
+}
+.copyright_texto{
+    text-transform: uppercase;
+    padding-top: 2%;
+    font-size: 0.65em;
+    font-weight:400;
+    line-height:1.5em;
+    color: #2F4F4F;
+    height: 200px;
+}
+
+#footer_conteudo p{
+    padding: 4% 8%;
+    margin: 5px 0;
+    color:  #2F4F4F;
+}
+.contato{
+    width: 100%;
+    background-color:#2F4F4F;
+    height: 100px;
+    clear: both;
+}
+.contato-conteudo{
+    max-width: 960px;
+    margin: 0 auto;
+    text-align: center;
+}
+.contato-conteudo h5{
+    padding: 3% 0;
+    font-size: 1.8em;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+.contato-conteudo a{
+    text-decoration: none;
+    color: #DCDCDC;
+}
+.imagem-divide{
+    padding: 15% 0;
+    background: /*bottom, image */
+    url(aaaaa.png);
+    background-size: cover;
+    background-position: center top;
+}
+#big_wrapper{
+    width: 1024px;
+    margin: auto 150px;
+}
+#big_wrapper h1{
+    text-align: center;
+    padding: 10px;
+}
+
+div.containerR{
+    width: 300px;
+    height: 250px;
+    margin: 10px;
+    border: 1px solid #777;
+    float: left;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 25px;
+}
+div.desc{
+    text-align: center;
+    font-size: 20px;
+    padding: 6px;
+}
+
+div.img:hover{
+    border: 2px solid #ccc;
+}

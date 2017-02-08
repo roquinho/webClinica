@@ -24,11 +24,11 @@ public class ExamesServlets extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if(request.getParameter("cadastro_exame")!=null) {
+        if(request.getParameter("marcar_exame")!=null) {
             
         String diaExame = request.getParameter("inputDia");
         String horaExame = request.getParameter("inputHora");
-        String tipoExame = request.getParameter("inputTipo");
+        String tipoExame = request.getParameter("inputTipoExame");
         String cpfPaciente = request.getParameter("inputCpfPaciente");
         Long cpfP = Long.parseLong(cpfPaciente);
         
@@ -52,7 +52,7 @@ public class ExamesServlets extends HttpServlet {
         
         
         else if(request.getParameter("deletar_exame")!=null) {
-          String cpf = request.getParameter("cpf");
+          String cpf = request.getParameter("inputCpf");
         Long cpff = Long.parseLong(cpf);
         
         Fachada fachada = new FachadaImplementa();
@@ -63,7 +63,7 @@ public class ExamesServlets extends HttpServlet {
         }  
         }
         else if(request.getParameter("buscar_exame")!=null) {
-          String cpf = request.getParameter("cpf");
+          String cpf = request.getParameter("inputCpf");
          Long cpff = Long.parseLong(cpf);
         
         Fachada fachada = new FachadaImplementa();
@@ -74,7 +74,7 @@ public class ExamesServlets extends HttpServlet {
             Logger.getLogger(ExamesServlets.class.getName()).log(Level.SEVERE, null, ex);
         }
         request.setAttribute("buscaExame", exame);
-        RequestDispatcher view = request.getRequestDispatcher("viewExame.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("ViewExameBusca.jsp");
         view.forward(request, response);
 
         }

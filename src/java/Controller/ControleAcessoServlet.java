@@ -32,8 +32,7 @@ public class ControleAcessoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
           
-        String nome = request.getParameter("inputNome");
-        String cpff = request.getParameter("cpf");
+        String cpff = request.getParameter("inputCpf");
         Long cpf = Long.parseLong(cpff);
         
         Fachada fachada = new FachadaImplementa();

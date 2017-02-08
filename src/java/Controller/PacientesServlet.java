@@ -25,7 +25,7 @@ public class PacientesServlet extends HttpServlet {
         
         if(request.getParameter("cadastro_paciente")!=null) {
             
-            String nome = request.getParameter("inputName");
+            String nome = request.getParameter("inputNome");
             String endereco = request.getParameter("inputEndereco");
             String telefone = request.getParameter("inputTelefone");
             String cpfString = request.getParameter("inputCpf");
@@ -35,8 +35,6 @@ public class PacientesServlet extends HttpServlet {
 
             Pacientes paciente = new Pacientes(cpf, nome, endereco, telefone, sexo, dataNascimento);
             Fachada fachada = new FachadaImplementa();
-            System.out.println(cpf);
-            System.out.println(paciente.getCpf());
 
             try {
                 fachada.cadastrarPaciente(paciente);
@@ -45,8 +43,8 @@ public class PacientesServlet extends HttpServlet {
             }         
 
                     
-        }else if(request.getParameter("filtra_cpf")!=null) {
-           String cpf = request.getParameter("cpf");
+        }else if(request.getParameter("deletar_paciente")!=null) {
+           String cpf = request.getParameter("inputCpf");
             Long cpff = Long.parseLong(cpf);
 
             Fachada fachada = new FachadaImplementa();
@@ -73,7 +71,7 @@ public class PacientesServlet extends HttpServlet {
             }
             
             request.setAttribute("buscaPaciente", paciente);
-            RequestDispatcher view = request.getRequestDispatcher("viewPaciente.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("ViewPacienteBusca.jsp");
             view.forward(request, response);
     }
     }

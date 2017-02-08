@@ -24,7 +24,7 @@ public class MedicosServlet extends HttpServlet {
         
         if(request.getParameter("cadastro_medico")!=null) {
        
-        String nome = request.getParameter("inputName");
+        String nome = request.getParameter("inputNome");
         String telefone = request.getParameter("inputTelefone");
         String cpfString = request.getParameter("inputCpf");
         Long cpf = Long.parseLong(cpfString);
@@ -45,7 +45,7 @@ public class MedicosServlet extends HttpServlet {
             }
         
         else if(request.getParameter("deletar_medico")!=null) {
-        String cpf = request.getParameter("cpf");
+        String cpf = request.getParameter("inputCpf");
         Long cpff = Long.parseLong(cpf);
         
         Fachada fachada = new FachadaImplementa();
@@ -69,7 +69,7 @@ public class MedicosServlet extends HttpServlet {
                 Logger.getLogger(MedicosServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.setAttribute("buscaMedico", medico);
-            RequestDispatcher view = request.getRequestDispatcher("viewMedico.jsp");
+            RequestDispatcher view = request.getRequestDispatcher("ViewMedicoBusca.jsp");
             view.forward(request, response);
 
         }

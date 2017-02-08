@@ -26,7 +26,7 @@ public class ConsultasServlet extends HttpServlet {
         protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-            if(request.getParameter("cadastro_consulta")!=null) {
+            if(request.getParameter("marcar_consulta")!=null) {
                  
         String diaConsulta = request.getParameter("inputDia");
         String horaConsulta = request.getParameter("inputHora");
@@ -60,8 +60,8 @@ public class ConsultasServlet extends HttpServlet {
             }
             
             else if(request.getParameter("deletar_consulta")!=null) {
-              String cpf = request.getParameter("cpf");
-        Long cpff = Long.parseLong(cpf);
+              String cpf = request.getParameter("inputCpf");
+              Long cpff = Long.parseLong(cpf);
         
         Fachada fachada = new FachadaImplementa();
         try {
@@ -72,7 +72,7 @@ public class ConsultasServlet extends HttpServlet {
             }
             
       else if(request.getParameter("buscar_consulta")!=null) {
-        String cpf = request.getParameter("cpf");
+        String cpf = request.getParameter("inputCpf");
         Long cpff = Long.parseLong(cpf);
         
         Fachada fachada = new FachadaImplementa();
@@ -84,7 +84,7 @@ public class ConsultasServlet extends HttpServlet {
         }
       
          request.setAttribute("buscaConsulta", consulta);
-         RequestDispatcher view = request.getRequestDispatcher("viewConsulta.jsp");
+         RequestDispatcher view = request.getRequestDispatcher("ViewConsultaBusca.jsp");
          view.forward(request, response);
 
       

@@ -20,7 +20,7 @@
       
        
          if(login.get(0) == true) {   
-          String redirectURL = "http://localhost:8080/webClinica/indexpacientes.html";
+          String redirectURL = "http://localhost:8080/webClinica/Buscar_paciente.html";
           response.sendRedirect(redirectURL);
          }
         else if(login.get(1)==true) {
