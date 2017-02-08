@@ -15,7 +15,31 @@
     <body>
         <%
         Consultas consulta = (Consultas)request.getAttribute("buscaConsulta");
-        out.println(consulta);
+          
         %>
+        
+             
+        <table style="width:100%">
+  <tr>
+    <th>nome do paciente</th>
+    <th>cpf do paciente</th> 
+    <th>hora da consulta</th>
+    <th>dia da consulta</th>
+    <th>cpf do medico</th> 
+    
+
+  </tr>
+  <tr>
+    <td><%=consulta.getPaciente().getNome()%></td>
+    <td><%=consulta.getPaciente().getCpf()%></td>
+    <td><%=consulta.getHoraConsulta()%></td>
+    <td><%=consulta.getDiaConsulta()%></td>
+    <td><%=consulta.getMedico().getNome()%></td>
+    
+  </tr>
+  <tr>
+ 
+  </tr>
+ 
     </body>
 </html>

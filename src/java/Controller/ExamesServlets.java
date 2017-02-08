@@ -90,13 +90,25 @@ public class ExamesServlets extends HttpServlet {
         Exames exame = new Exames();
         try {
           exame =   fachada.filtrarExameCpfPaciente(cpff);
+          
         } catch (ExceptionRegraNegocioFiltrarExame ex) {
             Logger.getLogger(ExamesServlets.class.getName()).log(Level.SEVERE, null, ex);
+            
+         request.setAttribute("alerta", "erro ao consultar exame "+ex);
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
         }
+        if(exame !=null) {
         request.setAttribute("buscaExame", exame);
         RequestDispatcher view = request.getRequestDispatcher("ViewExameBusca.jsp");
         view.forward(request, response);
-
+        }
+         else {
+         request.setAttribute("alerta", "exame nao encontrado ");
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+        }
         }
             }
     

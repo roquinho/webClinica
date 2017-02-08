@@ -93,21 +93,34 @@ public class ConsultasServlet extends HttpServlet {
             }
             
       else if(request.getParameter("buscar_consulta")!=null) {
-        String cpf = request.getParameter("inputCpf");
+        String cpf = request.getParameter("inputCpf");       
         Long cpff = Long.parseLong(cpf);
         
         Fachada fachada = new FachadaImplementa();
         Consultas consulta = new Consultas();
          try {
           consulta =   fachada.filtrarConsultaCpfPaciente(cpff);
+         
         } catch (ExceptionRegraNegocioFiltrarConsultas ex) {
             Logger.getLogger(ExamesServlets.class.getName()).log(Level.SEVERE, null, ex);
+        
+         request.setAttribute("alerta", "erro ao consultar "+ex);
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
         }
       
+        if(consulta !=null) { 
          request.setAttribute("buscaConsulta", consulta);
          RequestDispatcher view = request.getRequestDispatcher("ViewConsultaBusca.jsp");
          view.forward(request, response);
-
+        }
+        else {
+         request.setAttribute("alerta", "consulta nao encontrada ");
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+  
+        }
       
       }
         }

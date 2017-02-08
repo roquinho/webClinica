@@ -15,7 +15,29 @@
     <body>
         <%
         Exames exame = (Exames)request.getAttribute("buscaExame");
-        out.println(exame);
         %>
+        
+        <table style="width:100%">
+  <tr>
+    <th>nome do paciente</th>
+    <th>cpf do paciente</th> 
+    <th>hora do exame</th>
+    <th>dia do exame</th>
+    <th>tipo do exame</th> 
+    
+
+  </tr>
+  <tr>
+    <td><%=exame.getPaciente().getNome()%></td>
+    <td><%=exame.getPaciente().getCpf()%></td>
+    <td><%=exame.getHoraExame()%></td>
+    <td><%=exame.getDataExame()%></td>
+    <td><%=exame.getTipoExame()%></td>
+    
+  </tr>
+  <tr>
+ 
+  </tr>
+ 
     </body>
 </html>

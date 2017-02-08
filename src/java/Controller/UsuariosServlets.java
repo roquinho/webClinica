@@ -83,11 +83,22 @@ public class UsuariosServlets extends HttpServlet {
            usuario = fachada.filtrarUsuarioCpf(cpf);
         } catch (ExceptionRegraNegociofiltrarUsuarios ex) {
             Logger.getLogger(UsuariosServlets.class.getName()).log(Level.SEVERE, null, ex);
+            
+         request.setAttribute("alerta", "erro ao consultar usuario " +ex);
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
         }
-        request.setAttribute("buscaUsuario", usuario);
+        if(usuario!=null) {
+            request.setAttribute("buscaUsuario", usuario);
             RequestDispatcher view = request.getRequestDispatcher("ViewUsuarioBusca.jsp");
             view.forward(request, response);
-
+        }
+         else {
+         request.setAttribute("alerta", "usuario nao encontrado ");
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+        }
         }
             }
 

@@ -86,11 +86,22 @@ public class PacientesServlet extends HttpServlet {
                paciente = fachada.buscarPacienteCpf(cpf);
             } catch (ExceptionRegraNegocioPacienteBuscarPaciente ex) {
                 Logger.getLogger(PacientesServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
+         request.setAttribute("alerta", "erro ao consultar paciente "+ex);
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
             }
-            
+            if(paciente!=null) {
             request.setAttribute("buscaPaciente", paciente);
             RequestDispatcher view = request.getRequestDispatcher("ViewPacienteBusca.jsp");
             view.forward(request, response);
+            }
+             else {
+         request.setAttribute("alerta", "paciente nao encontrado ");
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+            }
     }
     }
     

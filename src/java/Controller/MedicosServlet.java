@@ -86,11 +86,22 @@ public class MedicosServlet extends HttpServlet {
               medico = fachada.buscarMedicoCpf(cpf);
             } catch (ExceptionRegraNegocioBuscarMedicos ex) {
                 Logger.getLogger(MedicosServlet.class.getName()).log(Level.SEVERE, null, ex);
+                
+         request.setAttribute("alerta", "erro ao consultar medico "+ex);
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+
             }
+            if(medico!=null) {
             request.setAttribute("buscaMedico", medico);
             RequestDispatcher view = request.getRequestDispatcher("ViewMedicoBusca.jsp");
             view.forward(request, response);
-
+            }
+            else {
+         request.setAttribute("alerta", "medico nao encontrado ");
+         RequestDispatcher view = request.getRequestDispatcher("ViewAlerta.jsp");
+         view.forward(request, response);
+            }
         }
                 }
 

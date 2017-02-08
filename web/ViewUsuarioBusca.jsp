@@ -15,7 +15,27 @@
     <body>
         <%
         Usuarios usuario = (Usuarios)request.getAttribute("buscaUsuario");
-        out.println(usuario);
+       
         %>
+        
+        <table style="width:100%">
+  <tr>
+    <th>nome</th>
+    <th>senha</th> 
+    <th>tipo Usuario</th>
+    <th>cpf</th>
+    
+  </tr>
+  <tr>
+    <td><%=usuario.getNome()%></td>
+    <td><%=usuario.getSenha()%></td>
+    <td><%=usuario.getTipoUsuario()%></td>
+    <td><%=usuario.getCpf()%></td>
+    
+  </tr>
+  <tr>
+ 
+  </tr>
+ 
     </body>
 </html>

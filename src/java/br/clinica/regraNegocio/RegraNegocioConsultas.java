@@ -71,6 +71,7 @@ public class RegraNegocioConsultas implements InterfaceRegaNegocioConsultas {
           if(cpf == null) {
               throw new ExceptionRegraNegocioFiltrarConsultas();
           }
+                 
           else {
               consulta = rc.filtrarConsultaCpfPaciente(cpf);
           }

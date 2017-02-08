@@ -15,7 +15,29 @@
     <body>
         <%
          Medicos medico = (Medicos)request.getAttribute("buscaMedico");
-         out.println(medico);
         %>
+        
+        <table style="width:100%">
+  <tr>
+    <th>nome</th>
+    <th>endereco</th> 
+    <th>telefone</th>
+    <th>especialidade</th>
+    <th>crm</th> 
+    <th>cpf</th>
+
+  </tr>
+  <tr>
+    <td><%=medico.getNome()%></td>
+    <td><%=medico.getEndereco()%></td>
+    <td><%=medico.getTelefone()%></td>
+    <td><%=medico.getEspecialidade()%></td>
+    <td><%=medico.getCrm()%></td>
+    <td><%=medico.getCpf()%></td>
+  </tr>
+  <tr>
+ 
+  </tr>
+ 
     </body>
 </html>

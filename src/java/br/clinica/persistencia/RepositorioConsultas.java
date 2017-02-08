@@ -97,8 +97,8 @@ public class RepositorioConsultas implements InterfaceRepositorioConsultas {
 	    this.stm = conexao.prepareStatement(sql);
 	        this.rs = stm.executeQuery();
        		    while(this.rs.next()){
-                        consulta = new Consultas();
-	 		if(cpf.equals(this.rs.getLong("cpf_paciente"))){	 			
+	 		if(cpf.equals(this.rs.getLong("cpf_paciente"))){
+                            consulta = new Consultas();
 	 		        consulta.getPaciente().setNome(this.rs.getString("nome_paciente"));
 	         		consulta.getPaciente().setCpf(this.rs.getLong("cpf_paciente"));
 	 			consulta.setHoraConsulta(this.rs.getString("hora_consulta"));
