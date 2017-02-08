@@ -20,15 +20,15 @@
       
        
          if(login.get(0) == true) {   
-          String redirectURL = "http://localhost:8080/webClinica/Buscar_paciente.html";
+          String redirectURL = "http://localhost:8080/webClinica/index_%20Paciente.html";
           response.sendRedirect(redirectURL);
          }
         else if(login.get(1)==true) {
-          String redirectURL = "http://localhost:8080/webClinica/indexpacientes.html";
+          String redirectURL = "http://localhost:8080/webClinica/index_%20Medico.html";
           response.sendRedirect(redirectURL);
          }
         else if(login.get(2)==true) {
-          String redirectURL = "http://localhost:8080/webClinica/indexpacientes.html";
+          String redirectURL = "http://localhost:8080/webClinica/index_%20Usuario%20-%20C%C3%B3pia.html";
           response.sendRedirect(redirectURL);
          }
       
